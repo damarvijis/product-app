@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios"
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios"
 
 export class BaseApi {
   protected axiosInstance: AxiosInstance
@@ -12,45 +12,9 @@ export class BaseApi {
     })
   }
 
-  protected async get<T>(url: string): Promise<T> {
+  protected async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response: AxiosResponse<T> = await this.axiosInstance.get(url)
-      return response.data
-    } catch (error) {
-      throw error
-    }
-  }
-
-  protected async patch<T>(url: string, data: any): Promise<T> {
-    try {
-      const response: AxiosResponse<T> = await this.axiosInstance.patch(url, data)
-      return response.data
-    } catch (error) {
-      throw error
-    }
-  }
-
-  protected async post<T>(url: string, data: any): Promise<T> {
-    try {
-      const response: AxiosResponse<T> = await this.axiosInstance.post(url, data)
-      return response.data
-    } catch (error) {
-      throw error
-    }
-  }
-
-  protected async put<T>(url: string, data: any): Promise<T> {
-    try {
-      const response: AxiosResponse<T> = await this.axiosInstance.put(url, data)
-      return response.data
-    } catch (error) {
-      throw error
-    }
-  }
-
-  protected async delete<T>(url: string): Promise<T> {
-    try {
-      const response: AxiosResponse<T> = await this.axiosInstance.delete(url)
+      const response: AxiosResponse<T> = await this.axiosInstance.get(url, config)
       return response.data
     } catch (error) {
       throw error

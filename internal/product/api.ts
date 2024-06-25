@@ -1,19 +1,20 @@
 import { BaseApi } from "../base/api"
-import { Product } from "./type"
+import { Product, ProductList } from "./type"
 
 class ProductApi extends BaseApi {
   constructor() {
     super("https://dummyjson.com")
   }
 
-  async listProduct(): Promise<Product[]> {
-    const articles = await this.get<Product[]>("/products")
-    return articles
+  async listProduct({ page, limit }: { page: number; limit: number }): Promise<ProductList> {
+    const skip = (page - 1) * limit
+    const productList = await this.get<ProductList>("/products", { params: { skip, limit } })
+    return productList
   }
 
   async findProduct(productId: number): Promise<Product> {
-    const updatedArticle = await this.get<Product>(`/products/${productId}`)
-    return updatedArticle
+    const productDetail = await this.get<Product>(`/products/${productId}`)
+    return productDetail
   }
 }
 

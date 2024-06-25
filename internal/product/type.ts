@@ -43,3 +43,10 @@ export type Product = {
   thumbnail: string
   images: string[]
 }
+
+export type ProductList = {
+  products: Product[]
+  total: number
+  skip: number
+  limit: number
+}
