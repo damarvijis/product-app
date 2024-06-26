@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { ReactElement, ReactNode } from "react"
 import { Inter } from "next/font/google"
+import { Container, Grid } from "@mantine/core"
 const inter = Inter({ subsets: ["latin"] })
 
 export type StaticPageProps = {
@@ -19,7 +20,9 @@ export const StaticPage = ({ title, children }: StaticPageProps): ReactElement =
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${inter.className}`}>{children}</main>
+      <main className={`${inter.className}`}>
+        <Container my={20}>{children}</Container>
+      </main>
     </>
   )
 }
