@@ -6,24 +6,46 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "storybook:dev": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "storybook:start": "serve storybook-static"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.8.2",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@mantine/carousel": "^7.10.2",
+    "@mantine/core": "^7.10.2",
+    "@mantine/hooks": "^7.10.2",
+    "@storybook/nextjs": "^8.1.10",
+    "@tabler/icons-react": "^3.6.0",
+    "@tanstack/react-query": "^5.45.1",
+    "@tanstack/react-query-devtools": "^5.45.1",
     "axios": "^1.7.2",
-    "framer-motion": "^11.2.11",
+    "embla-carousel-react": "^8.1.5",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sass": "^1.77.6"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.5.0",
+    "@storybook/addon-essentials": "^8.1.10",
+    "@storybook/addon-interactions": "^8.1.10",
+    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/addon-styling-webpack": "^1.0.0",
+    "@storybook/blocks": "^8.1.10",
+    "@storybook/react": "^8.1.10",
+    "@storybook/test": "^8.1.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "eslint-plugin-storybook": "^0.8.0",
+    "serve": "^14.2.3",
+    "storybook": "^8.1.10",
+    "storybook-dark-mode": "^4.0.2",
     "typescript": "^5"
   }
 }
