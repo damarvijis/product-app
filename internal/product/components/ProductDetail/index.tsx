@@ -5,7 +5,15 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 
-export const ProductDetail = () => {
+export type ProductDetailProps = {
+  images: string[]
+  description: string
+  title: string
+  price: number
+  availabilityStatus: string
+}
+
+export const ProductDetail = ({ images, description, title, price, availabilityStatus }: ProductDetailProps) => {
   const autoplay = useRef(Autoplay({ delay: 2000 }))
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -15,15 +23,10 @@ export const ProductDetail = () => {
     router.push("/").then(() => setIsLoading(false))
   }
 
-  const slides = [1, 2, 3, 5].map(item => (
-    <Carousel.Slide key={item}>
+  const slides = images.map((item, index) => (
+    <Carousel.Slide key={index}>
       <Center>
-        <Image
-          alt="product-image"
-          src={"https://cdn.dummyjson.com/products/images/fragrances/Dolce%20Shine%20Eau%20de/1.png"}
-          width={220}
-          height={220}
-        />
+        <Image alt="product-image" src={item} width={220} height={220} />
       </Center>
     </Carousel.Slide>
   ))
@@ -47,22 +50,21 @@ export const ProductDetail = () => {
 
       <Group justify="space-between" mt="lg">
         <Text fw={500} fz="lg">
-          Title
+          {title}
         </Text>
         <Badge variant="gradient" gradient={{ from: "green", to: "blue" }}>
-          In Stock
+          {availabilityStatus}
         </Badge>
       </Group>
 
       <Text fz="sm" c="dimmed" mt="sm">
-        Description Relax, rejuvenate and unplug in this unique contemporary Birdbox. Feel close to nature in ultimate
-        comfort. Enjoy the view of the epic mountain range of Blegja and the Førdefjord.
+        {description}
       </Text>
 
       <Group justify="space-between" mt="md">
         <Box>
-          <Text fz="xl" span fw={500}>
-            <NumberFormatter value={100} prefix="$ " thousandSeparator />
+          <Text fz="xl" span fw={500} variant="gradient" gradient={{ from: "yellow", to: "red" }}>
+            <NumberFormatter value={price} prefix="$ " thousandSeparator />
           </Text>
           <Text span fz="sm" c="dimmed">
             {" "}

@@ -16,7 +16,6 @@ export const useProductList = () => {
   const productQuery = useQuery({
     queryKey: ["productList", currentPage, LIMIT],
     queryFn: () => productApi.listProduct({ page: currentPage, limit: LIMIT }),
-    staleTime: 100,
   })
 
   const totalPages = productQuery.data ? Math.ceil(productQuery.data.total / LIMIT) : 0

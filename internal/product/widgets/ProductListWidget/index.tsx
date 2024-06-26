@@ -20,8 +20,8 @@ const ProductListWidget = () => {
     )
 
   return (
-    <Flex justify={"center"} align={"center"} gap={"md"} direction={"column"}>
-      <Grid gutter={"sm"} grow>
+    <Flex justify={"center"} align={"center"} gap={"xl"} direction={"column"}>
+      <Grid gutter={"xl"} grow>
         {productQuery.data.products.map((item, index) => (
           <Grid.Col span={{ base: 12, md: 5 }} key={index}>
             <ProductCard {...getProductCardData(item)} />

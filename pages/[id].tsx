@@ -13,7 +13,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     await queryClient.prefetchQuery({
       queryKey: ["productDetail", id],
       queryFn: () => getDefaultProductDetail(Number(id)),
-      staleTime: 100,
     })
 
     return {

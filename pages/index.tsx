@@ -9,7 +9,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     await queryClient.prefetchQuery({
       queryKey: ["productList", 1, 10],
       queryFn: getDefaultProductList,
-      staleTime: 100,
     })
 
     return {
