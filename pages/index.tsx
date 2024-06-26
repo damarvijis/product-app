@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     }
   } catch (error) {
-    console.log(error, "Error SSR")
+    console.log(error, "Error SSR Prodcut List")
     return {
       props: {},
     }

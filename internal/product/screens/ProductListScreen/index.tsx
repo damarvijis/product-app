@@ -9,9 +9,9 @@ const LIMIT = 10
 export const getDefaultProductList = async () => await productApi.listProduct({ page: PAGE, limit: LIMIT })
 
 const ProductListScreen = () => (
-  <StaticPage title="Product App - Damar">
+  <StaticPage title="Product List - Damar">
     <Flex justify={"center"} align={"center"} gap={"md"} direction={"column"}>
-      <Title order={3}>List Product</Title>
+      <Title order={3}>Product List</Title>
       <ProductListWidget />
     </Flex>
   </StaticPage>

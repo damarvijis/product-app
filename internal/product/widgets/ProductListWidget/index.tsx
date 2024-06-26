@@ -3,9 +3,10 @@ import { useProductList } from "./state"
 import { ProductCard } from "../../components/ProductCard"
 
 const ProductListWidget = () => {
-  const { productQuery, totalPages, handleChangePage, currentPage, getProductCardData } = useProductList()
+  const { productQuery, totalPages, handleChangePage, currentPage, getProductCardData, isLoadingDetailPage } =
+    useProductList()
 
-  if (productQuery.status === "pending")
+  if (productQuery.status === "pending" || isLoadingDetailPage)
     return (
       <Center>
         <Loader />
