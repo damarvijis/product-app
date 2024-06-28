@@ -1,9 +1,8 @@
 import { Card, Group, Button, Text, Center, Badge, NumberFormatter, Box } from "@mantine/core"
 import { Carousel } from "@mantine/carousel"
 import Autoplay from "embla-carousel-autoplay"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import Image from "next/image"
-import { useRouter } from "next/router"
 
 export type ProductDetailProps = {
   images: string[]
@@ -11,17 +10,20 @@ export type ProductDetailProps = {
   title: string
   price: number
   availabilityStatus: string
+  onClickBack: () => void
+  isLoadingBack: boolean
 }
 
-export const ProductDetail = ({ images, description, title, price, availabilityStatus }: ProductDetailProps) => {
+export const ProductDetail = ({
+  images,
+  description,
+  title,
+  price,
+  availabilityStatus,
+  onClickBack,
+  isLoadingBack,
+}: ProductDetailProps) => {
   const autoplay = useRef(Autoplay({ delay: 2000 }))
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleBackNavigation = () => {
-    setIsLoading(true)
-    router.push("/").then(() => setIsLoading(false))
-  }
 
   const slides = images.map((item, index) => (
     <Carousel.Slide key={index}>
@@ -72,7 +74,7 @@ export const ProductDetail = ({ images, description, title, price, availabilityS
           </Text>
         </Box>
 
-        <Button radius="md" loading={isLoading} onClick={handleBackNavigation}>
+        <Button radius="md" loading={isLoadingBack} onClick={onClickBack}>
           Back To List Product
         </Button>
       </Group>

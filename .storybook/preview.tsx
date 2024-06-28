@@ -5,8 +5,13 @@ import { addons } from "@storybook/preview-api"
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode"
 import { MantineProvider, useMantineColorScheme } from "@mantine/core"
 import { theme } from "../theme"
+import { initialize, mswLoader } from "msw-storybook-addon"
+import { Preview } from "@storybook/react/*"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { handlers } from "../internal/base/mocks/handlers"
 
 const channel = addons.getChannel()
+const queryClient = new QueryClient()
 
 function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
   const { setColorScheme } = useMantineColorScheme()
@@ -23,7 +28,26 @@ function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
-export const decorators = [
-  (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
-  (renderStory: any) => <MantineProvider theme={theme}>{renderStory()}</MantineProvider>,
-]
+initialize(
+  {
+    onUnhandledRequest: "bypass",
+  },
+  handlers,
+)
+
+const preview: Preview = {
+  loaders: [mswLoader],
+  decorators: [
+    (renderStory: any) => {
+      return (
+        <MantineProvider theme={theme}>
+          <ColorSchemeWrapper>
+            <QueryClientProvider client={queryClient}>{renderStory()}</QueryClientProvider>
+          </ColorSchemeWrapper>
+        </MantineProvider>
+      )
+    },
+  ],
+}
+
+export default preview
