@@ -1,4 +1,4 @@
-Welcome to my Product App
+Welcome to my Product App. I learn how to use Storybook with React Query & MantineUI
 
 ## Getting Started
 
