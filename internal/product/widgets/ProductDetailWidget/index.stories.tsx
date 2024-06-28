@@ -8,6 +8,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 
 const meta: Meta<typeof ProductDetailWidget> = {
   component: ProductDetailWidget,
+  tags: ["autodocs"],
 }
 
 export default meta
@@ -23,6 +24,7 @@ export const Default: Story = {
 }
 
 export const Loading: Story = {
+  tags: ["!autodocs"],
   parameters: {
     msw: {
       handlers: loadingGetDetailProductHandler,
@@ -31,6 +33,7 @@ export const Loading: Story = {
 }
 
 export const Error: Story = {
+  tags: ["!autodocs"],
   parameters: {
     msw: {
       handlers: errorGetDetailProductHandler,

@@ -11,7 +11,8 @@
     "storybook:dev": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:start": "serve storybook-static",
-    "storybook:test": "test-storybook"
+    "storybook:test": "test-storybook",
+    "test": "jest"
   },
   "dependencies": {
     "@mantine/carousel": "^7.10.2",
@@ -56,5 +57,8 @@
     "storybook": "^8.1.10",
     "storybook-dark-mode": "^4.0.2",
     "typescript": "^5"
+  },
+  "jest": {
+    "preset": "jest-playwright-preset"
   }
 }
