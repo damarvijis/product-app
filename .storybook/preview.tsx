@@ -1,6 +1,6 @@
 import "@mantine/core/styles.css"
 import "@mantine/carousel/styles.css"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { addons } from "@storybook/preview-api"
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode"
 import { MantineProvider, useMantineColorScheme } from "@mantine/core"
@@ -8,10 +8,8 @@ import { theme } from "../theme"
 import { initialize, mswLoader } from "msw-storybook-addon"
 import { Preview } from "@storybook/react/*"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { handlers } from "../internal/base/mocks"
 
 const channel = addons.getChannel()
-const queryClient = new QueryClient()
 
 function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
   const { setColorScheme } = useMantineColorScheme()
@@ -28,17 +26,16 @@ function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
-initialize(
-  {
-    onUnhandledRequest: "bypass",
-  },
-  handlers,
-)
+initialize({
+  onUnhandledRequest: "bypass",
+})
 
 const preview: Preview = {
   loaders: [mswLoader],
   decorators: [
     (renderStory: any) => {
+      const [queryClient] = useState(() => new QueryClient())
+
       return (
         <MantineProvider theme={theme}>
           <ColorSchemeWrapper>
