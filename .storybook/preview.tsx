@@ -8,7 +8,7 @@ import { theme } from "../theme"
 import { initialize, mswLoader } from "msw-storybook-addon"
 import { Preview } from "@storybook/react/*"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { handlers } from "../internal/base/mocks/handlers"
+import { handlers } from "../internal/base/mocks"
 
 const channel = addons.getChannel()
 const queryClient = new QueryClient()
