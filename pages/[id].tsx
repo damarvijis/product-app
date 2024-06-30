@@ -6,7 +6,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   try {
     const { id } = ctx.params ?? {}
 
-    if (!id) throw new Error("ID not found.")
+    if (!id) throw new Error("ID not found in params.")
 
     const queryClient = new QueryClient()
 
