@@ -1,5 +1,8 @@
 Welcome to my Product App. I learn how to use Storybook with React Query & MantineUI
 
+project link: https://product-app-damarvijis.vercel.app/
+storybook link: https://product-app-damarvijis-story.vercel.app/
+
 ## Getting Started
 
 Run the development server:
